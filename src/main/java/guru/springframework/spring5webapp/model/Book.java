@@ -3,7 +3,7 @@ package guru.springframework.spring5webapp.model;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
+// this is test Branch
 @Entity
 public class Book {
     @Id
