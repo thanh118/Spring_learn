@@ -2,7 +2,6 @@ package guru.springframework.spring5webapp.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -12,7 +11,8 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
-    private String publisher;
+    @OneToOne
+    private publisher publisher;
 
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
@@ -23,13 +23,13 @@ public class Book {
 
     }
 
-    public Book(String title, String isbn, String publiser){
+    public Book(String title, String isbn, publisher publiser){
         this.title = title;
         this.isbn = isbn;
         this.publisher = publiser;
     }
 
-    public Book(String title, String isbn, String publiser, Set<Author> Author){
+    public Book(String title, String isbn, publisher publiser, Set<Author> Author){
         this.title = title;
         this.isbn = isbn;
         this.publisher = publiser;
@@ -50,8 +50,8 @@ public class Book {
     public String getisbn(){return isbn;}
     public void setisbn(String isbn){this.isbn = isbn;}
 
-    public String getpubliser(){return publisher;}
-    public void setpubliser(String publiser){this.publisher = publiser;}
+    public publisher getpubliser(){return publisher;}
+    public void setpubliser(publisher publiser){this.publisher = publiser;}
 
     public Set<Author> getauthors(){return authors;}
     public void setAuthors(Set<Author> authors){this.authors = authors;}
